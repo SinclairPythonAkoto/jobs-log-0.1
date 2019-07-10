@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Outcome Reports</title>
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+            width: 50%;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: centre;
+        }
+        
+        th {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+<h1>Outcome Reports</h1>
+
+<h2>Outcome Log Report</h2>
+
+<form action="{{ url_for('outcome_reports') }}" method='post'>
+    <table>
+        <tr>
+            <th>Outcome</th>
+        </tr>
+        <tr>
+            <td>
+                <select name="job_outcome">
+                    <option disabled selected value="">Select Report Outcome</option>
+                    <option value="issue_resolved">Resolved: Issue Resolved</option>
+                    <option value="ongoing_issue">Resolved: Ongoing Issue</option>
+                    <option value="placed_order">Ordered New Parts</option>
+                    <option value="escalated">Escalated - Third Party</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Submit Report</button>
+            </td>
+        </tr>
+   </table>
+   <br>
+   <br>
+   <br>
+   <table>
+      <tr>
+         <th>Date</th>
+         <th>Time</th>
+         <th>Job</th>
+         <th>Description</th>
+         <th>Outcome</th>
+         <th>Additional Comments</th>
+         <th>Date Logged</th>
+         <th>Time Logged</th>
+      </tr>
+      {% for log in entry %}
+      <tr>
+         <td>{{ log[1] }}</td>
+         <td>{{ log[2] }}</td>
+         <td>{{ log[3] }}</td>
+         <td>{{ log[4] }}</td>
+         <td>{{ log[5] }}</td>
+         <td>{{ log[6] }}</td>
+         <td>{{ log[7] }}</td>
+         <td>{{ log[8] }}</td>
+      </tr>
+      {% endfor %}
+   </table>
+</form>
+<br>
+<br>
+<a href="{{ url_for('home') }}">Home</a>
+</body>
+</html>
