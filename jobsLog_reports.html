@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jobs Log</title>
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+            width: 50%;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: centre;
+        }
+        
+        th {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+<h1>Jobs Log</h1>
+
+<p>Please log your job below</p>
+
+<form action="{{ url_for('home') }}" method='post'>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Job</th>
+            <th>Description</th>
+            <th>Outcome</th>
+            <th>Additional Comments</th>
+      </tr>
+      <tr>
+        <td>
+            <input type="date" name="job_date">
+        </td>
+        <td>
+            <input type="time" name="job_time">
+        </td>
+        <td>
+            <select name="job_options">
+               <option disabled selected value="">Select Job Type</option>
+               <option value="installs">Installs</option>
+               <option value="maintenance">Maintenance</option>
+               <option value="room_check">Room Check</option>
+               <option value="audit_checks">Audit Checks</option>
+               <option value="project_installs">Project Installs</option>
+            </select>
+         </td>
+         <td>
+            <textarea row="3" cols="25%" placeholder="Description" name="description"></textarea>
+         </td>
+         <td>
+            <select name="job_options">
+               <option disabled selected value="">Select Job Outcome</option>
+               <option value="issue_resolved">Resolved: Issue Resolved</option>
+               <option value="ongoing_issue">Resolved: Ongoing Issue</option>
+               <option value="placed_order">Ordered New Parts</option>
+               <option value="escalated">Escalated - Third Party</option>
+            </select> 
+         </td>
+         <td>
+            <textarea rows="3" cols="25%" placeholder="Additional Comments" name="additional_comments"></textarea>
+         </td>
+      </tr>
+    </table>
+    <button type="submit">Submit Log</button>
+</form>
+<br>
+<br>
+<br>
+<table>
+   <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Job</th>
+      <th>Description</th>
+      <th>Outcome</th>
+      <th>Additional Comments</th>
+      <th>Date Logged</th>
+      <th>Time Logged</th>
+   </tr>
+   {% for log in entry %}
+   <tr>
+      <td>{{ log[1] }}</td>
+      <td>{{ log[2] }}</td>
+      <td>{{ log[3] }}</td>
+      <td>{{ log[4] }}</td>
+      <td>{{ log[5] }}</td>
+      <td>{{ log[6] }}</td>
+      <td>{{ log[7] }}</td>
+      <td>{{ log[8] }}</td>
+   </tr>
+   {% endfor %}
+</table>
+<br>
+<p>Click <a href="{{ url_for('job_reports') }}">here</a> to run a report for <strong>Job Type</strong>.<p>
+<br>
+<p>Click <a href="{{ url_for('outcome_reports') }}">here</a> to run a report for <strong>Outcome Type</strong>.<p>
+</body>
+
+</html>
