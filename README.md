@@ -1,2 +1,4 @@
 # jobs-log-0.1
-An online version of Excel where the user can input their data in the table, and run a report of the answers.
+
+
+This is basically an online version of Excel; where the user can input their data in a table, and run a report from the information provided by the database. 
